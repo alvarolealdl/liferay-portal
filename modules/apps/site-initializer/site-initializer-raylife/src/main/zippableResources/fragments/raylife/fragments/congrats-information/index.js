@@ -13,144 +13,100 @@
  */
 
 const applicationIdKey = 'raylife-application-id';
-
-const check = fragmentElement.querySelector("#hidden-images #check");
-const uncheck = fragmentElement.querySelector("#hidden-images #uncheck");
+const check = fragmentElement.querySelector('#hidden-images #check');
+const uncheck = fragmentElement.querySelector('#hidden-images #uncheck');
 
 const data = {
-    productName: "Business Owners Policy",
-    policyTerm: "10/1/2019 - 10/1/2020",
-    price: "1,225",
-    infoOne: {
-        checked: true,
-        value: "1,000,000"
-    },
-    infoTwo: {
-        checked: true,
-        value: "2,000,000"
-    },
-    infoThree: {
-        checked: true,
-        value: "50,000"
-    },
-    infoFour: {
-        checked: true,
-        value: "100,000"
-    },
-    infoFive: {
-        checked: true,
-        value: "500,000"
-    },
+	productName: 'Business Owners Policy',
+	policyTerm: '10/1/2019 - 10/1/2020',
+	price: '1,225',
+	infoOne: {
+		checked: true,
+		value: '1,000,000',
+	},
+	infoTwo: {
+		checked: true,
+		value: '2,000,000',
+	},
+	infoThree: {
+		checked: true,
+		value: '50,000',
+	},
+	infoFour: {
+		checked: true,
+		value: '100,000',
+	},
+	infoFive: {
+		checked: true,
+		value: '500,000',
+	},
 };
 
-const productName = document.getElementById(
-    'congrats-information-title'
-);
+const valueRow = [
+	{
+		image: document.getElementById('congrats-check-one'),
+		priceChecked: document.getElementById('price-one'),
+		priceUnchecked: document.getElementById('list-info-one'),
+		price: document.getElementById('price-one'),
+	},
+	{
+		image: document.getElementById('congrats-check-two'),
+		priceChecked: document.getElementById('price-two'),
+		priceUnchecked: document.getElementById('list-info-two'),
+		price: document.getElementById('price-two'),
+	},
+	{
+		image: document.getElementById('congrats-check-three'),
+		priceChecked: document.getElementById('price-three'),
+		priceUnchecked: document.getElementById('list-info-three'),
+		price: document.getElementById('price-three'),
+	},
+	{
+		image: document.getElementById('congrats-check-four'),
+		priceChecked: document.getElementById('price-four'),
+		priceUnchecked: document.getElementById('list-info-four'),
+		price: document.getElementById('price-four'),
+	},
+	{
+		image: document.getElementById('congrats-check-five'),
+		priceChecked: document.getElementById('price-five'),
+		priceUnchecked: document.getElementById('list-info-five'),
+		price: document.getElementById('price-five'),
+	},
+];
+
+const formatRow = (dataInfo, object) => {
+	if (dataInfo.checked) {
+		object.image.src = check.currentSrc;
+		object.priceChecked.innerHTML = '$' + dataInfo.value;
+		return;
+	}
+	object.price.innerHTML = '&nbsp;';
+	object.image.src = uncheck.currentSrc;
+	object.priceUnchecked.style.color = '#A0A0A4';
+};
+
+const productName = document.getElementById('congrats-info-title');
+
 productName.innerHTML = data.productName;
 
 const newPolicyNumber = localStorage.getItem(applicationIdKey);
+
 if (newPolicyNumber) {
-    document.getElementById('congrats-information-policy').textContent =
-        'Policy: #' + newPolicyNumber;
+	document.getElementById('congrats-info-policy').textContent =
+		'Policy: #' + newPolicyNumber;
 }
 
-const policyTerm = document.getElementById(
-    'congrats-information-date'
-);
+const policyTerm = document.getElementById('congrats-info-date');
+
 policyTerm.innerHTML = data.policyTerm;
 
+const policyAmount = document.getElementById('congrats-price');
 
-const policyAmount = document.getElementById(
-    'congrats-information-price-first'
-);
-policyAmount.innerHTML = "$" + data.price;
+policyAmount.innerHTML = '$' + data.price;
 
-const imageOne = document.getElementById(
-    'congrats-table-info-check-one'
-);
-const priceOneChecked = document.getElementById(
-    'price-one'
-);
-const priceOneUnchecked = document.getElementById(
-    'list-info'
-);
-if (data.infoOne.checked) {
-    imageOne.src = check.currentSrc;
-    priceOneChecked.innerHTML = "$" + data.infoOne.value;
-} else {
-    priceOne.innerHTML = "&nbsp;";
-    imageOne.src = uncheck.currentSrc;
-    priceOneUnchecked.style.color = "#A0A0A4";
-}
-
-const imageTwo = document.getElementById(
-    'congrats-table-info-check-two'
-);
-const priceTwoChecked = document.getElementById(
-    'price-two'
-);
-const priceTwoUnchecked = document.getElementById(
-    'list-info'
-);
-if (data.infoTwo.checked) {
-    imageTwo.src = check.currentSrc;
-    priceTwoChecked.innerHTML = "$" + data.infoTwo.value;
-} else {
-    priceTwo.innerHTML = "&nbsp;";
-    imageTwo.src = uncheck.currentSrc;
-    priceTwoUnchecked.style.color = "#A0A0A4";
-}
-
-const imageThree = document.getElementById(
-    'congrats-table-info-check-three'
-);
-const priceThreeChecked = document.getElementById(
-    'price-three'
-);
-const priceThreeUnchecked = document.getElementById(
-    'list-info'
-);
-if (data.infoThree.checked) {
-    imageThree.src = check.currentSrc;
-    priceThreeChecked.innerHTML = "$" + data.infoThree.value;
-} else {
-    priceThree.innerHTML = "&nbsp;";
-    imageThree.src = uncheck.currentSrc;
-    priceThreeUnchecked.style.color = "#A0A0A4";
-}
-
-const imageFour = document.getElementById(
-    'congrats-table-info-check-four'
-);
-const priceFourChecked = document.getElementById(
-    'price-four'
-);
-const priceFourUnchecked = document.getElementById(
-    'list-info'
-);
-if (data.infoFour.checked) {
-    imageFour.src = check.currentSrc;
-    priceFourChecked.innerHTML = "$" + data.infoFour.value;
-} else {
-    priceFour.innerHTML = "&nbsp;";
-    imageFour.src = uncheck.currentSrc;
-    priceFourUnchecked.style.color = "#A0A0A4";
-}
-
-const imageFive = document.getElementById(
-    'congrats-table-info-check-five'
-);
-const priceFiveChecked = document.getElementById(
-    'price-five'
-);
-const priceFiveUnchecked = document.getElementById(
-    'list-info'
-);
-if (data.infoFive.checked) {
-    imageFive.src = check.currentSrc;
-    priceFiveChecked.innerHTML = "$" + data.infoFive.value;
-} else {
-    priceFive.innerHTML = "&nbsp;";
-    imageFive.src = uncheck.currentSrc;
-    priceFiveUnchecked.style.color = "#A0A0A4";
-}
+formatRow(data.infoOne, valueRow[0]);
+formatRow(data.infoTwo, valueRow[1]);
+formatRow(data.infoThree, valueRow[2]);
+formatRow(data.infoFour, valueRow[3]);
+formatRow(data.infoFive, valueRow[4]);
