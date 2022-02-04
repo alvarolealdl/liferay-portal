@@ -29,10 +29,18 @@ export const SUBSECTION_KEYS = {
 	BUSINESS_EMAIL: 'Business Email',
 	BUSINESS_WEBSITE: 'Business Website',
 	DO_YOU_HAVE_RAYLIFE_POLICY: 'Do you have a Raylife Auto policy?',
+	DO_YOU_OWN_THE_BUILDING_AT: 'Do you own the building at ',
 	DO_YOU_SELL_PRODUCTS_UNDER_OWN_BRAND:
 		'Do you sell products under your own brand or label?',
 	DO_YOU_STORE_PERSONALITY_IDENTIFIABLE:
 		'Do you store personally identifiable information about your customers?',
+	HOW_MANY_SQUARE_FEET_OF_THE_BUILDING:
+		'How many square feet of the building does your business occupy?',
+	HOW_MANY_STORIES_IS_THIS_BUILDING: 'How many stories is this building?',
+	HOW_MANY_TOTAL_SQUARE_FEET_IS_THE_BUILDING:
+		'How many total square feet is the building?',
+	IS_THIS_THE_PRIMARY_LOCATION:
+		'Is this the primary location where you conduct business?',
 	LEGAL_ENTITY: 'Legal Entity',
 	PERCENT_OF_SALES_FROM_MERCHANDISE:
 		'Percent of sales from used merchandise?',
@@ -40,6 +48,8 @@ export const SUBSECTION_KEYS = {
 	PHYSICAL_ADDRESS: 'Physical Address',
 	WHAT_PERCENTAGE_OF_OVERALL_INVOLVE_DELIVERY:
 		'What percentage of overall sales involve delivery?',
+	WHAT_YEAR_WAS_THE_BUILDING_CONSTRUCTED:
+		'What year was the building constructed?',	
 	YEAR_OF_INDUSTRY_EXPERIENCE: 'Years of industry experience?',
 	YOUR_NAME: 'Your Name',
 };
@@ -166,6 +176,44 @@ export const AVAILABLE_STEPS = {
 		active: false,
 		id: 'PROPERTY',
 		index: 5,
+		mobileSubSections: [
+			{
+				active: true,
+				hideContinueButton: true,
+				hideInputLabel: true,
+				title: SUBSECTION_KEYS.DO_YOU_OWN_THE_BUILDING_AT,
+			},
+			{
+				active: false,
+				hideContinueButton: false,
+				hideInputLabel: true,
+				title: SUBSECTION_KEYS.HOW_MANY_STORIES_IS_THIS_BUILDING,
+			},
+			{
+				active: false,
+				hideContinueButton: false,
+				hideInputLabel: true,
+				title: SUBSECTION_KEYS.HOW_MANY_SQUARE_FEET_OF_THE_BUILDING,
+			},
+			{
+				active: false,
+				hideContinueButton: false,
+				hideInputLabel: true,
+				title: SUBSECTION_KEYS.HOW_MANY_TOTAL_SQUARE_FEET_IS_THE_BUILDING,
+			},
+			{
+				active: false,
+				hideContinueButton: false,
+				hideInputLabel: true,
+				title: SUBSECTION_KEYS.WHAT_YEAR_WAS_THE_BUILDING_CONSTRUCTED,
+			},
+			{
+				active: false,
+				hideContinueButton: false,
+				hideInputLabel: true,
+				title: SUBSECTION_KEYS.IS_THIS_THE_PRIMARY_LOCATION,
+			},
+		],	
 		section: 'property',
 		subsection: '',
 		title: 'More about',
