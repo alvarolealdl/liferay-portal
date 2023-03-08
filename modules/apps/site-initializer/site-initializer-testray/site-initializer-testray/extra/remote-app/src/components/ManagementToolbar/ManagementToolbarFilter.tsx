@@ -12,7 +12,7 @@
  * details.
  */
 
-import ClayButton from '@clayui/button';
+import ClayButton, {ClayButtonWithIcon} from '@clayui/button';
 import ClayIcon from '@clayui/icon';
 import ClayPopover from '@clayui/popover';
 import {
@@ -126,12 +126,21 @@ const FilterBody = ({buttonRef, filterSchema, setPosition}: FilterBody) => {
 				</p>
 
 				<Form.Input
+					className="search-filter"
 					name="search-filter"
 					onChange={({target: {value}}) => setFilter(value)}
 					placeholder={i18n.translate('search-filters')}
 					value={filter}
 				/>
 
+				<ClayButtonWithIcon
+					aria-label="Clear"
+					className="clear-button"
+					displayType="unstyled"
+					onClick={() => setFilter('')}
+					symbol="times"
+					title="Clear"
+				/>
 				<Form.Divider />
 			</div>
 
