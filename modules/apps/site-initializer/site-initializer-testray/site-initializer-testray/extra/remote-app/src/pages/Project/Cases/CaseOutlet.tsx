@@ -19,6 +19,7 @@ import {
 	useOutletContext,
 	useParams,
 } from 'react-router-dom';
+import PageRenderer from '~/components/PageRenderer';
 
 import {useFetch} from '../../../hooks/useFetch';
 import useHeader from '../../../hooks/useHeader';
@@ -42,7 +43,7 @@ const CaseOutlet = () => {
 		testrayProject,
 	}: {testrayProject: TestrayProject} = useOutletContext();
 
-	const {data: testrayCase, mutate} = useFetch<TestrayCase>(
+	const {data: testrayCase, error, loading, mutate} = useFetch<TestrayCase>(
 		testrayCaseRest.getResource(caseId as string),
 		{
 			transformData: (response) =>
@@ -95,8 +96,8 @@ const CaseOutlet = () => {
 		}
 	}, [setHeading, testrayProject, testrayCase]);
 
-	if (testrayProject && testrayCase) {
-		return (
+	return (
+		<PageRenderer error={error} loading={loading}>
 			<Outlet
 				context={{
 					mutateTestrayCase: mutate,
@@ -104,10 +105,8 @@ const CaseOutlet = () => {
 					testrayProject,
 				}}
 			/>
-		);
-	}
-
-	return null;
+		</PageRenderer>
+	);
 };
 
 export default CaseOutlet;

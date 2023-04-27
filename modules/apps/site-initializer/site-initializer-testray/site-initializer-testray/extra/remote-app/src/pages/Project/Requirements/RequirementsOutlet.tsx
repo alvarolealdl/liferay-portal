@@ -14,6 +14,7 @@
 
 import {useEffect} from 'react';
 import {Outlet, useOutletContext, useParams} from 'react-router-dom';
+import PageRenderer from '~/components/PageRenderer';
 
 import {useHeader} from '../../../hooks';
 import {useFetch} from '../../../hooks/useFetch';
@@ -33,12 +34,11 @@ const RequirementsOutlet = () => {
 		testrayProject,
 	}: {testrayProject: TestrayProject} = useOutletContext();
 
-	const {data: testrayRequirement, mutate} = useFetch<TestrayRequirement>(
-		getRequirementQuery(requirementId),
-		{
-			transformData: getRequirementTransformData,
-		}
-	);
+	const {data: testrayRequirement, error, loading, mutate} = useFetch<
+		TestrayRequirement
+	>(getRequirementQuery(requirementId), {
+		transformData: getRequirementTransformData,
+	});
 
 	const {setHeaderActions, setHeading} = useHeader({
 		timeout: 100,
@@ -67,8 +67,8 @@ const RequirementsOutlet = () => {
 		}
 	}, [testrayProject, setHeading, testrayRequirement]);
 
-	if (testrayRequirement && testrayProject) {
-		return (
+	return (
+		<PageRenderer error={error} loading={loading}>
 			<Outlet
 				context={{
 					mutateTestrayRequirement: mutate,
@@ -76,10 +76,8 @@ const RequirementsOutlet = () => {
 					testrayRequirement,
 				}}
 			/>
-		);
-	}
-
-	return null;
+		</PageRenderer>
+	);
 };
 
 export default RequirementsOutlet;
