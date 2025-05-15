@@ -3,12 +3,15 @@
  * SPDX-License-Identifier: LGPL-2.1-or-later OR LicenseRef-Liferay-DXP-EULA-2.0.0-2023-06
  */
 
-import {Locator, Page, expect} from '@playwright/test';
+import {FrameLocator, Locator, Page, expect} from '@playwright/test';
 
 export class FormFieldsPage {
 	readonly page: Page;
 	readonly repeatFieldButton: Locator;
 	readonly richTextAddImageButton: Locator;
+	readonly richTextToolbar: Locator;
+	readonly richTextSourceButton: Locator;
+	readonly richTextFrame: FrameLocator;
 
 	constructor(page: Page) {
 		this.page = page;
@@ -16,6 +19,15 @@ export class FormFieldsPage {
 		this.richTextAddImageButton = page
 			.getByLabel('Rich Text')
 			.getByTitle('Image');
+		this.richTextToolbar = page.locator(
+			'.ddm-field-container .ddm-field span.cke_top.cke_reset_all'
+		);
+		this.richTextSourceButton = page.locator(
+			'span.cke_toolbar.cke_toolbar_last [title="Source"]'
+		);
+		this.richTextFrame = page.frameLocator(
+			'.ddm-field-container iframe[title="editor"]'
+		);
 	}
 
 	async addSelectItem(optionName: string, nth?: number) {

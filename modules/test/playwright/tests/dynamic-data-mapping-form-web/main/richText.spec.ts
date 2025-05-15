@@ -159,3 +159,34 @@ xssDisabledTest(
 		await assertRichTextContent(content, sanitizedContent, formEntryPage);
 	}
 );
+
+baseTest(
+	"Check if you can't see the source button and if you can't type in the text field when rich text read only",
+	{tag: ['@LPD-55278']},
+	async ({formBuilderPage, formBuilderSidePanelPage, formFieldsPage}) => {
+
+		// Create and enter a new form
+
+		await formBuilderPage.goToNew();
+
+		await expect(formBuilderPage.newFormHeading).toBeVisible();
+
+		await formBuilderPage.fillFormTitle('Form' + getRandomInt());
+
+		// Add a rich text field and publish form
+
+		await formBuilderSidePanelPage.addFieldByDoubleClick('Rich Text');
+
+		await formBuilderPage.publishButton.click();
+
+		// Rich Text Field Source Button Not Visible and Not Editable
+
+		await expect(formFieldsPage.richTextToolbar).toBeVisible();
+
+		await expect(formFieldsPage.richTextSourceButton).toBeHidden();
+
+		await expect(
+			formFieldsPage.richTextFrame.locator('body')
+		).toHaveAttribute('contenteditable', 'false');
+	}
+);
